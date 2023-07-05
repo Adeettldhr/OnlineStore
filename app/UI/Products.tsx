@@ -1,50 +1,120 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios';
-import ProductCard from '../components/ProductCard';
+// import React, { useEffect, useState } from 'react'
+// import axios from 'axios';
+// import ProductCard from '../components/ProductCard';
+
+
+// import { connect } from "react-redux";
+
+// const Products = () => {
+//   const [products, setProducts] = useState<any[]>([]);
+//     const [loading, setLoading] = useState(true);
+//   const getProducts = () => {
+//     axios
+//       .get("https://fakestoreapi.com/products")
+//       .then((response) => {
+//         setProducts(response.data);
+//         setLoading(false);
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//         setLoading(false);
+//       });
+//   };
+
+//   useEffect(() => {
+//     getProducts();
+//   }, []);
+
+//   return (
+    // <section id="products">
+    //   <div className="p-4 px-6">
+    //     <h1 className="md:text-5xl sm:text-4xl text-xl font-bold py-4 text-[darkcyan]">
+    //       Products
+    //     </h1>
+    //     <div className="flex flex-wrap gap-4">
+    //       {loading ? (
+    //         <p>Loading...</p>
+    //       ) :(
+    //         products.map(
+    //           (item: {
+    //             id: React.Key | null | undefined;
+    //             image: string;
+    //             title: string;
+    //             price: number;
+    //           }) => (
+    //             <ProductCard
+    //               key={item.id}
+    //               imageSrc={item.image}
+    //               productName={item.title}
+    //               productPrice={item.price}
+    //             />
+    //           )
+    //         )
+    //       ) }
+    //     </div>
+    //   </div>
+    // </section>
+//   );
+// };
+
+// export default Products
+
+
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { add } from "../store/cartSlice";
+import { fetchProducts } from "../store/productSlice";
+import { STATUSES } from "../store/productSlice";
+import ProductCard from "../components/ProductCard";
 
 const Products = () => {
-  const [products, setProducts] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true);
-  const getProducts = () => {
-    axios
-      .get("https://fakestoreapi.com/products")
-      .then((response) => {
-        setProducts(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false);
-      });
-  };
+  const dispatch = useDispatch();
+  const { data: products, status } = useSelector((state:any) => state.product);
+
 
   useEffect(() => {
-    getProducts();
+    dispatch(fetchProducts() as any);
+
   }, []);
 
+  const handleAdd = (product: any) => {
+    dispatch(add(product));
+  };
+
+  if (status === STATUSES.LOADING) {
+    return <h2>Loading....</h2>;
+  }
+
+  if (status === STATUSES.ERROR) {
+    return <h2>Something went wrong!</h2>;
+  }
   return (
     <section id="products">
       <div className="p-4 px-6">
         <h1 className="md:text-5xl sm:text-4xl text-xl font-bold py-4 text-[darkcyan]">
           Products
         </h1>
-        <div className="flex flex-wrap gap-4">
-          {loading ? (
-            <p>Loading...</p>
-          ) : (
-            products.map((item) => (
+        <div className="flex flex-wrap gap-4 md:flex-row flex-col">
+          {products.map(
+            (item: {
+              id: React.Key | null | undefined;
+              image: string;
+              title: string;
+              price: number;
+            }) => (
               <ProductCard
                 key={item.id}
                 imageSrc={item.image}
                 productName={item.title}
                 productPrice={item.price}
+                onAddToCart={() => handleAdd(item)}
               />
-            ))
+            )
           )}
         </div>
       </div>
     </section>
   );
-}
+};
 
-export default Products
+export default Products;

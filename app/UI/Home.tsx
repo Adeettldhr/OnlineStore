@@ -31,7 +31,7 @@ const Home = () => {
         { src:  logo10.src , alt: "Logo 10" },
       ];
   return (
-    <section id="home">
+    <section id="home" className="pt-24">
       <div>
         <div className="flex justify-center items-center">
           <p className="md:text-5xl sm:text-4xl text-xl font-bold py-4 text-[darkcyan]">
@@ -45,13 +45,19 @@ const Home = () => {
             loop
           />
         </div>
-        <Carousel showThumbs={false} autoPlay infiniteLoop showStatus={false}>
+        <Carousel
+          showThumbs={false}
+          autoPlay
+          infiniteLoop
+          showStatus={false}
+          className="max-w-full"
+        >
           <div
             className="relative mx-auto"
             style={{ height: "70vh", width: "95vw" }}
           >
             <img src={image1.src} alt="Image 1" className="object-contain" />
-            <div className="absolute inset-0 m-28 mt-48 mr-96 pr-64">
+            <div className="absolute inset-0 m-8 sm:m-28 md:m-48 lg:m-56 xl:m-64">
               <p className="text-black">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos,
                 nisi debitis? Unde commodi illum esse nemo odit? Harum dolorum,
@@ -68,7 +74,7 @@ const Home = () => {
             style={{ height: "70vh", width: "95vw" }}
           >
             <img src={image2.src} alt="Image 2" className="object-contain " />
-            <div className="absolute inset-0 m-48 mt-48">
+            <div className="absolute inset-0 m-8 sm:m-28 md:m-48 lg:m-56 xl:m-64">
               <p className="text-white">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos,
                 nisi debitis? Unde commodi illum esse nemo odit? Harum dolorum,
@@ -85,7 +91,7 @@ const Home = () => {
             style={{ height: "70vh", width: "95vw" }}
           >
             <img src={image3.src} alt="Image 3" className="object-contain" />
-            <div className="absolute inset-0 m-28 mr-96 pr-64 mt-48">
+            <div className="absolute inset-0 m-8 sm:m-28 md:m-48 lg:m-56 xl:m-64">
               <p className="text-black">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos,
                 nisi debitis? Unde commodi illum esse nemo odit? Harum dolorum,
@@ -100,7 +106,9 @@ const Home = () => {
         </Carousel>
       </div>
       <div className="p-4 px-6">
-        <h1 className="md:text-5xl sm:text-4xl text-xl font-bold py-4 text-[darkcyan]">Brands</h1>
+        <h1 className="md:text-5xl sm:text-4xl text-xl font-bold py-4 text-[darkcyan]">
+          Brands
+        </h1>
         <div className="flex py-3 overflow-x-auto">
           {brandLogos.map((logo, index) => (
             <img
