@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsFillCartFill } from "react-icons/bs";
 
 const ProductCard = ({
@@ -6,14 +6,23 @@ const ProductCard = ({
   productName,
   productPrice,
   onAddToCart,
+  
 }: {
   imageSrc: string;
   productName: string;
   productPrice: number;
   onAddToCart: () => void;
 }) => {
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
   const handleAddToCart = () => {
     onAddToCart();
+        setShowSuccessMessage(true);
+
+
+        setTimeout(() => {
+          setShowSuccessMessage(false);
+        }, 2000);
   };
 
   return (
@@ -31,7 +40,7 @@ const ProductCard = ({
         className="bg-[darkcyan] rounded-md flex justify-between font-medium my-6 mx-auto px-6 py-3 text-black"
         onClick={handleAddToCart}
       >
-        Add to Cart
+        {showSuccessMessage ? "Added to Cart!" : "Add to Cart"}
         <BsFillCartFill size={20} className="flex" />
       </button>
     </div>
