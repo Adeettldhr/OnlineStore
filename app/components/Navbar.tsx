@@ -1,7 +1,33 @@
 
 
+import Link from "next/link";
 import React, { useState } from "react";
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
+import {FaShoppingCart} from "react-icons/fa"
+
+
+const NAV__LINK = [
+  {
+    path: "/",
+    display: "Home",
+  },
+  {
+    path: "#products",
+    display: "Products",
+  },
+  {
+    path: "#about",
+    display: "About",
+  },
+  {
+    path: "#search",
+    display: "Search",
+  },
+  {
+    path: "#contact",
+    display: "Contact",
+  },
+];
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -12,15 +38,19 @@ const Navbar = () => {
     <div className="flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4">
       <h1 className=" text-3xl font-bold text-[darkcyan]">O-Store</h1>
       <ul className="hidden md:flex">
-        <li className="p-4">Home</li>
-        <li className="p-4">Products</li>
-        <li className="p-4">About</li>
-        <li className="p-4">Search</li>
-        <li className="p-4">Contact</li>
+        {NAV__LINK.map((item, index) => (
+          <Link href={item.path} key={index}>
+            <li className="p-4 ">{item.display}</li>
+          </Link>
+        ))}
       </ul>
       <div className="flex text-3xl font-bold text-[darkcyan]">
-        <p className="p-4">Cart</p>
-        <p className="p-4">Cart</p>
+        <p className="p-4">
+          <AiOutlineSearch size={30} />
+        </p>
+        <p className="p-4">
+          <FaShoppingCart size={30} />
+        </p>
       </div>
       <div onClick={handleNav} className="block md:hidden">
         {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
@@ -36,11 +66,11 @@ const Navbar = () => {
           NavBar
         </h1>
         <ul className="p-4 uppercase text-[darkcyan]">
-          <li className="p-4 border-b border-gray-600">Home</li>
-          <li className="p-4 border-b border-gray-600">Products</li>
-          <li className="p-4 border-b border-gray-600">About</li>
-          <li className="p-4 border-b border-gray-600">Search</li>
-          <li className="p-4">Contact</li>
+          {NAV__LINK.map((item, index) => (
+            <Link href={item.path} key={index}>
+              <li className="p-4 border-b border-gray-600">{item.display}</li>
+            </Link>
+          ))}
         </ul>
       </div>
     </div>
