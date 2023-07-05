@@ -1,4 +1,4 @@
-"use client"
+
 import React, { useEffect, useState } from "react";
 
 const Footer = () => {
@@ -6,11 +6,14 @@ const Footer = () => {
 
   useEffect(() => {
     const handleScroll = () => {
+      if (typeof window !== "undefined") {
       const windowHeight = window.innerHeight;
+    
       const fullHeight = document.body.offsetHeight;
       const scrollPosition = window.scrollY;
 
       setIsFooterSticky(fullHeight - scrollPosition < windowHeight);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
