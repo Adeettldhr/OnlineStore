@@ -1,4 +1,5 @@
 import React from "react";
+import { BsFillCartFill } from "react-icons/bs";
 
 const ProductCard = ({
   imageSrc,
@@ -23,11 +24,11 @@ const ProductCard = ({
       <h2 className="mt-4 text-xl font-semibold">{productName}</h2>
       <p className="mt-2 text-gray-600">${productPrice}</p>
       <button
-        className="bg-[darkcyan] w-[200px] rounded-md font-medium my-6 mx-auto px-6 py-3 text-black"
+        className="bg-[darkcyan] w-[200px] rounded-md flex justify-between font-medium my-6 mx-auto px-6 py-3 text-black"
         onClick={handleAddToCart}
       >
         Add to Cart
-        
+        <BsFillCartFill size={20} className="flex"/>
       </button>
     </div>
   );
