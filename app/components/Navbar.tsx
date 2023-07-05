@@ -1,10 +1,8 @@
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import { AiOutlineClose, AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
-import {FaShoppingCart} from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import CartModal from "./CartModal";
-
 
 
 const NAV__LINK = [
@@ -13,19 +11,19 @@ const NAV__LINK = [
     display: "Home",
   },
   {
-    path: "#products",
+    path: "/products",
     display: "Products",
   },
   {
-    path: "#about",
+    path: "/about",
     display: "About",
   },
   {
-    path: "#search",
-    display: "Search",
+    path: "/category",
+    display: "Category",
   },
   {
-    path: "#contact",
+    path: "/contact",
     display: "Contact",
   },
 ];
@@ -33,41 +31,47 @@ const NAV__LINK = [
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [showModal, setShowModal] = useState(false);
-      const items = useSelector((state:any) => state.cart);
+  const items = useSelector((state: any) => state.cart);
   const handleNav = () => {
     setNav(!nav);
   };
 
-    const handleCartClick = () => {
-      setShowModal(true);
-    };
+  const handleCartClick = () => {
+    setShowModal(true);
+  };
 
-    const handleCloseModal = () => {
-      setShowModal(false);
-    };
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
   return (
     <div className="fixed z-50 top-0 left-0 w-full shadow-lg bg-[lightgrey]">
       <div className=" flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4">
         <h1 className=" text-3xl font-bold text-[darkcyan]">O-Store</h1>
         <ul className="hidden md:flex">
           {NAV__LINK.map((item, index) => (
-            <Link href={item.path} key={index}>
+            <Link to={item.path} key={index}>
               <li className="p-4 ">{item.display}</li>
             </Link>
           ))}
         </ul>
         <div className="flex text-3xl font-bold text-[darkcyan]">
-          <Link className="p-4" href="/">
+          <Link className="p-4" to="/search-page">
             <AiOutlineSearch size={30} />
           </Link>
-          <div className="p-4 flex" onClick={handleCartClick}>
+          {/* <div className="p-4 flex" onClick={handleCartClick}>
             <FaShoppingCart size={30} />
             <div className="ml-1 text-yellow-700 -mt-3 text-2xl">
               {items.length}
             </div>
-          </div>
+          </div> */}
+          <Link className="p-4 flex" to="/cart">
+            <FaShoppingCart size={30} />
+            <div className="ml-1 text-yellow-700 -mt-3 text-2xl">
+              {items.length}
+            </div>
+          </Link>
         </div>
-        {showModal && <CartModal closeModal={handleCloseModal} />}
+
         <div onClick={handleNav} className="block md:hidden">
           {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
         </div>
@@ -83,7 +87,7 @@ const Navbar = () => {
           </h1>
           <ul className="p-4 uppercase text-[darkcyan]">
             {NAV__LINK.map((item, index) => (
-              <Link href={item.path} key={index}>
+              <Link to={item.path} key={index}>
                 <li className="p-4 border-b border-gray-600">{item.display}</li>
               </Link>
             ))}

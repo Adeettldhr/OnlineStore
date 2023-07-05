@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Search = () => {
+const Category = () => {
   return (
     <section id="search">
       <div className="p-4 px-6">
@@ -12,4 +12,4 @@ const Search = () => {
   );
 }
 
-export default Search
+export default Category

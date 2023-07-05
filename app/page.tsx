@@ -6,21 +6,35 @@ import Footer from "./components/Footer";
 import { Provider } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import store from "./store/store";
-import Home from "./UI/Home";
-import Cart from "./pages/Carts/page";
+
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import SearchPage from "./pages/SearchPage";
+import Products from "./UI/Products";
+import Contact from "./UI/Contact";
+import About from "./UI/About";
+import Category from "./UI/Category";
+import Cart from "./pages/Cart";
 
 const page = () => {
   return (
     <Provider store={store}>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />}></Route>
-        <Route path="/product-details" element={<ProductDetailsPage />}></Route>
-        <Route path="/search-page" element={<SearchPage />}></Route>
-      </Routes>
-      <Footer />
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />}></Route>
+          <Route path="/cart" element={<Cart />}></Route>
+          <Route
+            path="/product-details"
+            element={<ProductDetailsPage />}
+          ></Route>
+          <Route path="/search-page" element={<SearchPage />}></Route>
+          <Route path="/products" element={<Products />}></Route>
+          <Route path="/contact" element={<Contact />}></Route>
+          <Route path="/about" element={<About />}></Route>
+          <Route path="/category" element={<Category />}></Route>
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </Provider>
   );
 };
