@@ -1,4 +1,11 @@
 "use client";
+if (typeof window === "undefined") {
+  const { JSDOM } = require("jsdom");
+  const { window } = new JSDOM("");
+  global.document = window.document;
+  global.window = window;
+}
+
 import React from "react";
 import HomePage from "./pages/HomePage";
 import Navbar from "./components/Navbar";
@@ -13,6 +20,8 @@ import Products from "./UI/Products";
 import Contact from "./UI/Contact";
 import About from "./UI/About";
 import Cart from "./pages/Cart";
+
+
 
 const page = () => {
   return (
