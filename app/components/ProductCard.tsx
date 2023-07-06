@@ -29,7 +29,7 @@ const ProductCard = ({
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-3 w-full md:w-[18.8%] ">
+    <div className="bg-white rounded-lg shadow-md p-3 w-full md:w-[18.8%] flex flex-col">
       <img
         src={imageSrc}
         alt={productName}
@@ -48,7 +48,7 @@ const ProductCard = ({
       </button>
       <Link
         to={`/product-details/${productId}`}
-        className="text-gray-500 hover:underline"
+        className="text-gray-500 flex justify-center items-center hover:underline"
       >
         View More
       </Link>

@@ -11,8 +11,16 @@ const productSlice = createSlice({
     initialState: {
         data: [],
         status: STATUSES.IDLE,
+    searchTerm: '',
+    searchResults: [],
     },
     reducers: {
+    setSearchResults: (state:any, action:any) => {
+      state.searchResults = action.payload;
+    },
+    setSearchTerm: (state: { searchTerm: any; }, action: { payload: any; }) => {
+      state.searchTerm = action.payload;
+    },
 
     },
     extraReducers: (builder: { addCase: (arg0: any, arg1: (state: any, action: any) => void) => { (): any; new(): any; addCase: { (arg0: any, arg1: (state: any, action: any) => void): { (): any; new(): any; addCase: { (arg0: any, arg1: (state: any, action: any) => void): void; new(): any; }; }; new(): any; }; }; }) => {
@@ -30,8 +38,10 @@ const productSlice = createSlice({
     },
 });
 
-export const { setProducts, setStatus } = productSlice.actions;
+export const { setProducts, setStatus, setSearchResults, setSearchTerm  } = productSlice.actions;
 export default productSlice.reducer;
+
+
 
 // Thunks
 export const fetchProducts = createAsyncThunk('products/fetch', async () => {

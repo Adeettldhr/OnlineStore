@@ -18,10 +18,7 @@ const NAV__LINK = [
     path: "/about",
     display: "About",
   },
-  {
-    path: "/category",
-    display: "Category",
-  },
+
   {
     path: "/contact",
     display: "Contact",
@@ -44,7 +41,9 @@ const Navbar = () => {
         <ul className="hidden md:flex">
           {NAV__LINK.map((item, index) => (
             <Link to={item.path} key={index}>
-              <li className="p-4 ">{item.display}</li>
+              <li className="p-4 hover:underline hover:text-[darkcyan] hover:bg-gray-200 hover:shadow-md transition duration-300 ease-in-out">
+                {item.display}
+              </li>
             </Link>
           ))}
         </ul>
@@ -82,7 +81,9 @@ const Navbar = () => {
           <ul className="p-4 uppercase text-[darkcyan]">
             {NAV__LINK.map((item, index) => (
               <Link to={item.path} key={index}>
-                <li className="p-4 border-b border-gray-600">{item.display}</li>
+                <li className="p-4 border-b border-gray-600 hover:underline hover:text-[darkcyan] hover:bg-gray-200 hover:shadow-md transition duration-300 ease-in-out">
+                  {item.display}
+                </li>
               </Link>
             ))}
           </ul>
