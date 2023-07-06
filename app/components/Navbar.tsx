@@ -30,19 +30,13 @@ const NAV__LINK = [
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+
   const items = useSelector((state: any) => state.cart);
   const handleNav = () => {
     setNav(!nav);
   };
 
-  const handleCartClick = () => {
-    setShowModal(true);
-  };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
   return (
     <div className="fixed z-50 top-0 left-0 w-full shadow-lg bg-[lightgrey]">
       <div className=" flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4">

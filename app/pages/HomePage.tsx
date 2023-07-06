@@ -7,6 +7,7 @@ import Contact from '../UI/Contact';
 
 
 const HomePage = () => {
+  
   return (
     <>
     <Home/>

@@ -1,28 +1,31 @@
 import React, { useState } from "react";
 import { BsFillCartFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({
+  productId,
   imageSrc,
   productName,
   productPrice,
+
   onAddToCart,
-  
 }: {
+  productId:string;
   imageSrc: string;
   productName: string;
   productPrice: number;
+
   onAddToCart: () => void;
 }) => {
-    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const handleAddToCart = () => {
     onAddToCart();
-        setShowSuccessMessage(true);
+    setShowSuccessMessage(true);
 
-
-        setTimeout(() => {
-          setShowSuccessMessage(false);
-        }, 2000);
+    setTimeout(() => {
+      setShowSuccessMessage(false);
+    }, 2000);
   };
 
   return (
@@ -43,6 +46,12 @@ const ProductCard = ({
         {showSuccessMessage ? "Added to Cart!" : "Add to Cart"}
         <BsFillCartFill size={20} className="flex" />
       </button>
+      <Link
+        to={`/product-details/${productId}`}
+        className="text-gray-500 hover:underline"
+      >
+        View More
+      </Link>
     </div>
   );
 };

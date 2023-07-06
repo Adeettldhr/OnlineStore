@@ -7,7 +7,7 @@ import { RiMoneyDollarCircleLine } from "react-icons/ri";
 
 const About = () => {
   return (
-    <section id="about">
+    <section id="about" className="pt-28">
       <div className="p-4 px-6">
         <div className="flex justify-between py-5">
           <div className="md:text-4xl sm:text-3xl text-xl font-bold py-4 text-[darkcyan]">

@@ -32,16 +32,19 @@ const Products = () => {
         <h1 className="md:text-5xl sm:text-4xl text-xl font-bold py-4 text-[darkcyan]">
           Products
         </h1>
+
         <div className="flex flex-wrap gap-4 md:flex-row flex-col">
           {products.map(
             (item: {
-              id: React.Key | null | undefined;
+              id: string;
               image: string;
               title: string;
               price: number;
+              productId:string;
             }) => (
               <ProductCard
                 key={item.id}
+                productId={item.id}
                 imageSrc={item.image}
                 productName={item.title}
                 productPrice={item.price}

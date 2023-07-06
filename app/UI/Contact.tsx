@@ -10,7 +10,7 @@ import {
 
 const Contact = () => {
   return (
-    <section id="contact">
+    <section id="contact" className="pt-28">
       <div className="p-4 px-6 bg-black">
         <div className="w-full py-16 text-white px-4">
           <div className="max-w-[1240px] mx-auto grid lg:grid-cols-3">
